@@ -45,11 +45,11 @@
             Param: $query - The query string *unescaped*.
             Returns: Array of query results
         */
-        public function query($query)
+        public function query($queryString)
         {
             assert($this->connection != false && $this->connection != NULL)        
-            $query = $this->connection->real_escape_string($query);     // Escape the query string for security reasons.
-            $queryResult = $this->connection->query($query);            // Get the result back from the query.
+            $queryString = $this->connection->real_escape_string($queryString);     // Escape the query string for security reasons.
+            $queryResult = $this->connection->query($queryString);            // Get the result back from the query.
             $results = array();                                         // Setup array for returning back the query results.
             
             for ($row_no = 0; $row_no <= $queryResult->num_rows - 1; $row_no++)
