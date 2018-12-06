@@ -1,4 +1,5 @@
-appengine-php-guestbook
-================================
+#Jumppack web app prototype
+- Shows games stored from database
+- Custom adverts
+- Etc.
 
-Guestbook demo for Google App Engine that uses PHP
