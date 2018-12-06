@@ -60,7 +60,7 @@
             }
             
             // Return false when there are no results.
-            return (!empty($results) ? $results : false;
+            return (!empty($results) ? $results : false);
         }
         
         /* Close the connection once we're done */
