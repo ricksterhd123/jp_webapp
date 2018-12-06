@@ -4,4 +4,4 @@ threadsafe: true
 
 handlers:
 - url: /.*
-  script: helloworld.php
+  script: index.php
