@@ -1,16 +1,10 @@
-<?php require('utils/dbConnect.php'); ?>
-<html>
+<?php require('utils/dbConnect.php'); ?> <html>
 	<head>
 		<title>Jumppack store page</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	</head>
 	<body>
-<<<<<<< HEAD
-<<<<<<< HEAD
 		<h1>Hello world</h1>
-=======
-=======
->>>>>>> 77aa841636eaf16cf7097a97688d8b641fa09e05
 		<h1>Jetpack</h1>
 		<h2>An all in one game launcher</h2>
         <article>
@@ -24,10 +18,6 @@
                 }
             ?>
         </article>
-<<<<<<< HEAD
->>>>>>> b948af000090320a6951c9ffffdc7c3fda8934fc
-=======
->>>>>>> 77aa841636eaf16cf7097a97688d8b641fa09e05
 	</body>
 </html>
 
