@@ -47,7 +47,7 @@
         */
         public function query($queryString)
         {
-            assert($this->connection != false && $this->connection != NULL)        
+            assert($this->connection != false && $this->connection != NULL);        
             $queryString = $this->connection->real_escape_string($queryString);     // Escape the query string for security reasons.
             $queryResult = $this->connection->query($queryString);            // Get the result back from the query.
             $results = array();                                         // Setup array for returning back the query results.
