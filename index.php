@@ -10,7 +10,7 @@
         <article>
             <h3>Games list: </h3>
             <?php 
-                $db = new dbConnection("35.205.37.34", getenv("MYSQL_USER"), getenv("MYSQL_PASSWORD"), getenv("MYSQL_DSN");
+                $db = new dbConnection("35.205.37.34", getenv("MYSQL_USER"), getenv("MYSQL_PASSWORD"), getenv("MYSQL_DSN"));
                 $games = $db->query("SELECT * FROM games");
                 for ($row_no = 0; $row_no <= count($games); $row_no++)
                 {
