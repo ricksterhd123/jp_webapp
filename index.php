@@ -20,13 +20,13 @@
 		     if (empty($data)) { exit(); }
 		     for ($i = 0; $i <= count($data); $i++)
 		     {
-			echo "<article class="game">
+			echo '<article class="game">';
 		     	echo "<h3>";
 			echo "<h4>" . $data[$i]["Title"] . "</h4>";
 		        echo "<p>" . $data[$i]["PublisherID"] . "</p>";
 			echo "<p>" . $data[$i]["ProducerID"] . "</p>";
 			echo "</h3>";
-			echo "</article>"
+			echo "</article>";
 		     }
 		?>
 	</body>
