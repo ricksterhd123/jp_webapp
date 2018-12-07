@@ -18,7 +18,7 @@
 
 		     $data = $database->select('games', '*');
 		     if (empty($data)) { exit(); }
-		     for ($i = 0; $i <= count($data); $i++)
+		     for ($i = 0; $i <= count($data) - 1; $i++)
 		     {
 			echo '<article class="game">';
 		     	echo "<h3>";
