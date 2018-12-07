@@ -2,6 +2,7 @@
 	<head>
 		<title>Jumppack games page</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="style.css"/>
 	</head>
 	<body>
 		<h1>Jetpack - A simple games launcher</h1>
@@ -19,11 +20,13 @@
 		     if (empty($data)) { exit(); }
 		     for ($i = 0; $i <= count($data); $i++)
 		     {
+			echo "<article class="game">
 		     	echo "<h3>";
-			echo "<p>" . $data[$i]["Title"] . "</p>";
-		        echo "<p>" . $data[$i]["PublisherName"] . "</p>";
-			echo "<p>" . $data[$i]["ProducerName"] . "</p>";
+			echo "<h4>" . $data[$i]["Title"] . "</h4>";
+		        echo "<p>" . $data[$i]["PublisherID"] . "</p>";
+			echo "<p>" . $data[$i]["ProducerID"] . "</p>";
 			echo "</h3>";
+			echo "</article>"
 		     }
 		?>
 	</body>
