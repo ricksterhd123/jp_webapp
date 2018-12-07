@@ -15,7 +15,7 @@
 
 <?php 
       require("vendor/autoload.php");
-      user Medoo\Medoo;
+      use Medoo\Medoo;
       $database = new Medoo(['database_type' => 'mysql', 
 			     'database_name' => getenv("MYSQL_DSN"),
 			     'server' => '35.205.37.34',
