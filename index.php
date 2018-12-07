@@ -17,7 +17,6 @@
 
 		     $data = $database->select('games', '*');
 		     if (empty($data)) { exit(); }
-		     $data = json_decode($data, true);
 		     for ($i = 0; $i <= count($data); $i++)
 		     {
 		     	echo "<h3>";
