@@ -1,0 +1,9 @@
+================SAMPLE DATABASE================
+publishers:
+PublisherID (PK) INT auto_increment, PublisherName VARCHAR(30) unique not null,
+producers:
+ProducerID (PK) INT auto_increment, ProducerName VARCHAR(30) unique not null
+games:
+GameID (PK) INT auto_increment, Title VARCHAR(30) unique not null, DeveloperID (FK) INT, PublisherID (FK) INT, ProducerID (FK) INT, ReleaseDate DATE
+
+
