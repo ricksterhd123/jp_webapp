@@ -17,10 +17,10 @@ router.get('/', function(req, res, next) {
 	var id = req.query.id;
 	if (!id){ res.status(404).send('Error: no id specified'); return; }
 	// TODO: Create a games table and replace this test code and return some useful data.
-	connection.query("SELECT username FROM test WHERE userid = 1", 
+	connection.query("SELECT title FROM test", 
 		function (error, results, fields) { 
 			if (error){ console.log("MYSQL ERROR"); return; };
-			res.json(results);
+			res.json(results);	// Send the result as response in JSON.
 		});
 });
 
