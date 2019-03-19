@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 	// If game id was provided then search for it.
 	if (id){ query = query + " WHERE userid = " + connection.escape(id); }
 	// TODO: Create a games table and replace this test code and return some useful data.
-	connection.query(query 
+	connection.query(query,
 		function (error, results, fields) { 
 			if (error){ console.log("MYSQL ERROR"); return; };
 			res.json(results);	// Send the result as response in JSON.
