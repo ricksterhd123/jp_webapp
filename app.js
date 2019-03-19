@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// TODO: Rename to /routes/api/store
+var storeRouter = require('./routes/store');
 
 var app = express();
 
@@ -19,8 +20,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Index
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+// Web api store
+app.use('/api/store', storeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
