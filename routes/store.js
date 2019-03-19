@@ -14,8 +14,8 @@ connection.connect();
 
 /* GET store games */
 router.get('/', function(req, res, next) {
-	var id = req.query.id;
-	if (!id){ res.status(404).send('Error: no id specified'); return; }
+	var id = req.query.game;
+	if (!id){ res.status(404).send('404 Error: no game id specified'); return; }
 	// TODO: Create a games table and replace this test code and return some useful data.
 	connection.query("SELECT title FROM test", 
 		function (error, results, fields) { 
