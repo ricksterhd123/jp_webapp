@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/mysql');
 // MySQL nodejs module from: https://www.npmjs.com/package/mysql
-/**********************************     TEST FROM HERE
+/**********************************     RICKY PREVIOUS CODE FROM HERE
 const mysql = require('mysql');
 const connection = mysql.createConnection({host: 'remotemysql.com', user: 'dXrzjYnA8J', password: 'BbLqTSU7vL', database: 'dXrzjYnA8J'});
 connection.connect();
@@ -26,8 +26,7 @@ router.get('/', sendGames);
 
 function sendGames(req, res) {
 	const games = db.listGames(req.query.game);
-	// res.json(games);
-	console.log(games);
+	// res.json(games); this is commented while it is not working
 }
 
 module.exports = router;
