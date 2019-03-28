@@ -27,15 +27,19 @@ class MYSQL{
     /**
      * @desc Get list of games by id
      * @param integer id - The game id to search for
-     * @param function callback(object games) - The callback to obtain the result.
+     * @param function callback(JSON games) - The callback which obtains the result.
      * @return bool - success or failure
      */
-    listGames(id, callback) {
+    listGames(id, search, callback) {
         if (!this.connection) return false;
 
         let query = 'SELECT * FROM test';
         if (id) {
             query += ' WHERE userid = ' + this.connection.escape(id);
+        }
+
+        if (search) {
+            query += " WHERE title = " + this.connection.escape(search);
         }
 
         this.connection.query(query, function(err, results) {
@@ -49,6 +53,5 @@ class MYSQL{
     }
 
 }
-
 
 module.exports = MYSQL;
