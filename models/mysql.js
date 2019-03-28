@@ -7,6 +7,12 @@ const connection = mysql.createConnection(config.mysql);
 // TODO: Store data in memory or some type of cache and provide an interface to the MySQL connection.
 connection.connect();
 
+/**
+  * @desc Get list of games by id
+  * @param integer id - The game id to search for
+  * @param function callback(object games) - The callback to obtain the result.
+  * @return bool - success or failure
+*/
 module.exports.listGames = (id, callback) => {
   let query = 'SELECT * FROM test';
   if (id) {
