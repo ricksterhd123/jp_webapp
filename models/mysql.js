@@ -8,23 +8,23 @@ const connection = mysql.createConnection(config.mysql);
 connection.connect();
 
 /**
-  * @desc Get list of games by id
-  * @param integer id - The game id to search for
-  * @param function callback(object games) - The callback to obtain the result.
-  * @return bool - success or failure
-*/
+ * @desc Get list of games by id
+ * @param integer id - The game id to search for
+ * @param function callback(object games) - The callback to obtain the result.
+ * @return bool - success or failure
+ */
 module.exports.listGames = (id, callback) => {
-  let query = 'SELECT * FROM test';
-  if (id) {
-    query += 'WHERE userid = ' + connection.escape(id);
-  }
-
-  connection.query(query, function(err, results) {
-    if (err) {
-      throw err;
+    let query = 'SELECT * FROM test';
+    if (id) {
+        query += ' WHERE userid = ' + connection.escape(id);
     }
-    console.log(JSON.stringify(results));
-    console.log(callback);
-    callback(results);
-  });
+
+    connection.query(query, function(err, results) {
+        if (err) {
+            throw err;
+        }
+        console.log(JSON.stringify(results));
+        console.log(callback);
+        callback(results);
+    });
 }
