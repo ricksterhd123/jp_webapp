@@ -1,7 +1,7 @@
 # Jump pack web api
 ## Store page:
-- [ ] GET /store => Get the front-page store games
-- [ ] GET /store?game=id => Get game info by id
+- [x] GET /store => Get the front-page store games
+- [x] GET /store?game=id => Get game info by id
 - [ ] GET /store?search=term => Get all games matching term
 - [ ] GET /store/new => Get new recent additions to store
 - [ ] GET /store/recommended => Get recommendations based on user data
