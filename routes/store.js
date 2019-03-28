@@ -8,7 +8,7 @@ const MYSQL = require('../models/mysql');
 
 router.get('/', (req, res, next) => {
 	let db = new MYSQL();
-	db.listGames(req.query.game, req.query.search, (games) => {res.json(games);});
+	db.listGames(req.query.id, req.query.search, (games) => {res.json(games);});
 	db.end();
 });
 module.exports = router;
