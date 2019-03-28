@@ -9,5 +9,6 @@ const MYSQL = require('../models/mysql');
 router.get('/', (req, res, next) => {
 	let db = new MYSQL();
 	db.listGames(req.query.game, (games) => {res.json(games);});
+	db.end();
 });
 module.exports = router;
