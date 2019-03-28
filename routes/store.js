@@ -4,9 +4,10 @@
 
 const express = require('express');
 const router = express.Router();
-const db = require('../models/mysql');
+const MYSQL = require('../models/mysql');
 
 router.get('/', (req, res, next) => {
+	let db = new MYSQL();
 	db.listGames(req.query.game, (games) => {res.json(games);});
 });
 module.exports = router;
