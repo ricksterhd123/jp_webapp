@@ -34,14 +34,17 @@ class MYSQL{
         if (!this.connection) return false;
 
         let query = 'SELECT * FROM test';
+
         if (id) {
             query += ' WHERE userid = ' + this.connection.escape(id);
         }
 
         if (search) {
-            query += " WHERE title = " + this.connection.escape(search);
+            query += (id) ? " AND" : " WHERE";    // TODO: find a better way to do this.
+            query += " title = " + this.connection.escape(search);
         }
 
+        console.log(query);
         this.connection.query(query, function(err, results) {
             if (err) {
                 throw err;
