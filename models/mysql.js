@@ -27,8 +27,9 @@ class MYSQL{
     /**
      * @desc Get list of games by id
      * @param integer id - The game id to search for
+     * @param string search - The game title to search for
      * @param function callback(JSON games) - The callback which obtains the result.
-     * @return bool - success or failure
+     * @return bool - success or failure connection
      */
     listGames(id, search, callback) {
         if (!this.connection) return false;
