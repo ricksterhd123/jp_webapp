@@ -12,6 +12,9 @@ const sessionRouter = require('./routes/session');
 // TODO: Rename to /routes/api/users
 const usersRouter = require('./routes/users');
 const app = express();
+const basicAuth = require('express-basic-auth')
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +31,10 @@ app.use('/', indexRouter);
 
 // Web api store
 app.use('/api/store', storeRouter);
+
+app.use(basicAuth({
+    users: { 'exile': 'test123' }
+}))
 app.use('/api/session', sessionRouter);
 app.use('/api/users', usersRouter);
 
