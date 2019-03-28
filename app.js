@@ -7,7 +7,10 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 // TODO: Rename to /routes/api/store
 const storeRouter = require('./routes/store');
-
+// TODO: Rename to /routes/api/session
+const sessionRouter = require('./routes/session');
+// TODO: Rename to /routes/api/users
+const usersRouter = require('./routes/users');
 const app = express();
 
 // view engine setup
@@ -25,6 +28,8 @@ app.use('/', indexRouter);
 
 // Web api store
 app.use('/api/store', storeRouter);
+app.use('/api/session', sessionRouter);
+app.use('/api/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
