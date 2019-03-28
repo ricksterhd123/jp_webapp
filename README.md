@@ -1,18 +1,18 @@
 # Jump pack web api
 ## Store page:
-- [x] GET /store => Get the front-page store games
-- [x] GET /store?game=id => Get game info by id
-- [ ] GET /store?search=term => Get all games matching term
-- [ ] GET /store/new => Get new recent additions to store
-- [ ] GET /store/recommended => Get recommendations based on user data
+- [x] GET /api/store => Get the front-page store games
+- [x] GET /api/store?game=id => Get game info by id
+- [ ] GET /api/store?search=term => Get all games matching term
+- [ ] GET /api/store/new => Get new recent additions to store
+- [ ] GET /api/store/recommended => Get recommendations based on user data
 ## Chat:
-- [ ] POST /chat/id => Send a message to player id
-- [ ] GET  /chat/id => Get back 30 most recent messages from player id
-- [ ] GET  /chat => Get all friends and their most recent messages
+- [ ] POST /api/chat => Send a message to player id
+- [ ] GET  /api/chat/id => Get back 30 most recent messages from player id (maybe use request body instead)
+- [ ] GET  /api/chat => Get all friends and their most recent messages
 ## Admin manager:
 ## Login
-- [ ] POST /register => create an account {validation required}
-- [ ] POST /authenticate => Authenticate app with token and credentials
+- [ ] PUT /api/user => create an account {validation required}
+- [ ] POST /api/session => Authenticate app with username and password (encrypted in HTTPs)
 ## User manager:
-- [ ] GET /account => get simple user profile info {authentication required}
-- [ ] PUT /account/settings => overwrite user profile info {authentication required}  
+- [ ] GET /api/user => get simple user profile info {authentication required}
+- [ ] POST /api/user/settings => update user-data {authentication required}  
