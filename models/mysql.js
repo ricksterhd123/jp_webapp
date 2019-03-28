@@ -31,6 +31,8 @@ class MYSQL{
      * @return bool - success or failure
      */
     listGames(id, callback) {
+        if (!this.connection) return false;
+
         let query = 'SELECT * FROM test';
         if (id) {
             query += ' WHERE userid = ' + this.connection.escape(id);
@@ -42,6 +44,8 @@ class MYSQL{
             }
             callback(results);
         });
+
+        return true;
     }
 
 }
