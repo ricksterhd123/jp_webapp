@@ -46,15 +46,23 @@ class MYSQL{
 
         console.log(query);
         this.connection.query(query, function(err, results) {
-            if (err) {
-                throw err;
-            }
+            if (err) throw err;
             callback(results);
         });
 
         return true;
     }
 
+    getUserData(username, callback){
+        if (!this.connection) return false;
+        let query = "SELECT * FROM UserAccounts WHERE username = " + this.connection.escape(username);
+
+        this.connection.query(query, (err, results) => {
+            if (err) throw err;
+            callback(results);
+        })
+        return true;
+    }
 }
 
 module.exports = MYSQL;
