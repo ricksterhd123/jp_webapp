@@ -24,8 +24,12 @@ router.get('/', function(req, res, next) {
                                        TO HERE                 ********************************/
 router.get('/', sendGames);
 
+function test(wew)
+{
+	console.log(JSON.stringify(wew));
+}
 function sendGames(req, res) {
-	const games = db.listGames(req.query.game);
+	const games = db.listGames(req.query.game, test);
 	// res.json(games); this is commented while it is not working
 }
 

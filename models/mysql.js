@@ -7,7 +7,7 @@ const connection = mysql.createConnection(config.mysql);
 // TODO: Store data in memory or some type of cache and provide an interface to the MySQL connection.
 connection.connect();
 
-module.exports.listGames = (id) => {
+module.exports.listGames = (id, callback) => {
   let query = 'SELECT * FROM test';
   if (id) {
     query += 'WHERE userid = ' + connection.escape(id);
@@ -18,6 +18,7 @@ module.exports.listGames = (id) => {
       throw err;
     }
     console.log(JSON.stringify(results));
+    console.log(callback);
+    callback(results);
   });
-  // return JSON.stringify(results) in here
 }
