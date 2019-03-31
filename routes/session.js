@@ -73,9 +73,11 @@ router.post("/", function (req, res, next){
     console.log(req.body.token);
     var publicKEY = fs.readFileSync(PUBLIC_KEY_FILE, 'utf8');
     var legit = jwt.verify(req.body.token, publicKEY, {issuer: issuer, expiresIn: expiresIn, algorithm: algorithm}, (err, decoded) => {
+        // If Jwt is invalid or incorrect:
         if (err){
             res.status(401).send("Invalid jwt");
         } else{
+            // jwt is valid!
             res.json(decoded);
         }
     });
