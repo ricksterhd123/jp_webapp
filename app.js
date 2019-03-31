@@ -12,7 +12,6 @@ const sessionRouter = require('./routes/session');
 // TODO: Rename to /routes/api/users
 const usersRouter = require('./routes/users');
 const app = express();
-const basicAuth = require('express-basic-auth')
 
 
 
