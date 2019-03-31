@@ -32,9 +32,9 @@ app.use('/', indexRouter);
 // Web api store
 app.use('/api/store', storeRouter);
 
-app.use(basicAuth({
-    users: { 'exile': 'test123' }
-}))
+// app.use(basicAuth({
+//     users: { 'exile': 'test123' }
+// }))
 app.use('/api/session', sessionRouter);
 app.use('/api/users', usersRouter);
 
