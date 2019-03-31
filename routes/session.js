@@ -4,6 +4,19 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const MYSQL = require('../models/mysql');
 
+// Private and public key pair
+const PRIVATE_KEY_FILE = __dirname + "/../private-key.key";
+const PUBLIC_KEY_FILE = __dirname + "/../public-key.key";
+
+// DEBUG
+var DEBUG_MODE = true;
+
+
+// JWT claims:
+var issuer = "jumppack";
+var audience = "https://jumppack.herokuapp.com";
+var expiresIn = "12h";
+var algorithm = "RS256"
 /* Send signed JWT once user successfully authenticated */
 router.get("/", function(req, res, next) {
     // Grab the "Authorization" header.
@@ -19,6 +32,7 @@ router.get("/", function(req, res, next) {
     } else {
         // If the user enters a username and password, the browser re-requests the route
         // and includes a Base64 string of those credentials.
+        // NOTE: overflow
         var credentials = new Buffer(auth.split(" ").pop(), "base64").toString("ascii").split(":");
         var username = credentials[0];
         var password = credentials[1];
@@ -31,12 +45,19 @@ router.get("/", function(req, res, next) {
                 return;
             }
 
-            console.log("Username: " + username);
-            console.log("Password: " + password);
-            console.log("Result: " + result[0].username);
-            console.log("Result: " + result[0].password);
-            if (result[0].username == username && result[0].password == password) {
-                res.send("Access granted!");
+            if (DEBUG_MODE){
+                console.log("Username: " + username);
+                console.log("Password: " + password);
+                console.log("MySQL Username: " + result[0].username);
+                console.log("MySQL Password: " + result[0].password);
+            }
+
+            if (result[0].username === username && result[0].password === password) {
+                var privateKEY = fs.readFileSync(PRIVATE_KEY_FILE, 'utf8');
+                var token = jwt.sign({username: username}, privateKEY, {issuer: issuer, expiresIn: expiresIn, algorithm: algorithm});
+                console.log("Token - " + token)
+                res.send(token);
+
             } else {
                 res.status(401).send("Access denied!");
             }
@@ -45,5 +66,19 @@ router.get("/", function(req, res, next) {
         // close database connection
         db.end();
     }
+});
+
+router.post("/", function (req, res, next){
+    console.log(typeof(req.body.token));
+    console.log(req.body.token);
+    var publicKEY = fs.readFileSync(PUBLIC_KEY_FILE, 'utf8');
+    var legit = jwt.verify(req.body.token, publicKEY, {issuer: issuer, expiresIn: expiresIn, algorithm: algorithm}, (err, decoded) => {
+        if (err){
+            res.status(401).send("Invalid jwt");
+        } else{
+            res.json(decoded);
+        }
+    });
+
 });
 module.exports = router;
