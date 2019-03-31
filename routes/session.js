@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const MYSQL = require('../models/mysql');
 
-app.get("/", function(req, res, next){
+router.get("/", function(req, res, next){
   // Grab the "Authorization" header.
   var auth = req.get("authorization");
 
