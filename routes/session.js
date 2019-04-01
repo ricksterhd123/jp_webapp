@@ -71,15 +71,33 @@ router.get("/", function(req, res, next) {
 
 /* HTTP POST /api/session */
 router.post("/", function (req, res, next){
+
+    var auth = req.get("authorization");
+    if (!auth) {
+        res.status(401).send("Authorization required");
+        return false;
+    }
+    auth = auth.split(" ");
+    var authType = auth[0];
+
+    // check if auth header is bearer type
+    // return 401 if not.
+    if (authType != "Bearer") {
+        res.status(401).send("Incorrect authorization type");
+        return false;
+    }
+
+    // JWT token part
+    var jwtToken = auth[1];
     if (DEBUG_MODE){
-        console.log("JWT: " + req.body.token);
+        console.log("JWT: " + jwtToken);
     }
 
     var publicKEY = fs.readFileSync(PUBLIC_KEY_FILE, 'utf8');
-    var legit = jwt.verify(req.body.token, publicKEY, {issuer: issuer, expiresIn: expiresIn, algorithm: algorithm}, (err, decoded) => {
+    var legit = jwt.verify(jwtToken, publicKEY, {issuer: issuer, expiresIn: expiresIn, algorithm: algorithm}, (err, decoded) => {
         // If Jwt is invalid or incorrect:
         if (err){
-            res.status(401).send("Invalid jwt");
+            res.status(401).send("Access denied");
         } else{
             // jwt is valid - send decoded json object.
             res.json(decoded);
