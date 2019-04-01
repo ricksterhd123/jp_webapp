@@ -27,6 +27,10 @@ app.use(hsts({
 const enforce = require('express-sslify');
 app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
+// ensure that all headers are provided:
+const helmet = require('helmet')
+app.use(helmet());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

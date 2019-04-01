@@ -12,6 +12,7 @@
     "express": "^4.16.4",
     "express-sslify": "^1.2.0",
     "hsts": "^2.2.0",
+    "helmet": "^3.16.0",
     "http-errors": "^1.6.3",
     "jade": "^1.11.0",
     "jsonwebtoken": "^8.5.1",
