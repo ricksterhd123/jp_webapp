@@ -11,12 +11,10 @@ const PUBLIC_KEY_FILE = __dirname + "/../public-key.key";
 // DEBUG
 var DEBUG_MODE = true;
 
-
 // JWT claims:
-var issuer = "jumppack";
-var audience = "https://jumppack.herokuapp.com";
-var expiresIn = "12h";
-var algorithm = "RS256"
+var expiresIn = "12h";  // Time before JWT expirary
+var algorithm = "RS256"; // Algorithm used for private/public key pair
+
 /* Send signed JWT once user successfully authenticated */
 router.get("/", function(req, res, next) {
     // Grab the "Authorization" header.
@@ -68,16 +66,19 @@ router.get("/", function(req, res, next) {
     }
 });
 
+/* HTTP POST /api/session */
 router.post("/", function (req, res, next){
-    console.log(typeof(req.body.token));
-    console.log(req.body.token);
+    if (DEBUG_MODE){
+        console.log("JWT: " + req.body.token);
+    }
+
     var publicKEY = fs.readFileSync(PUBLIC_KEY_FILE, 'utf8');
     var legit = jwt.verify(req.body.token, publicKEY, {issuer: issuer, expiresIn: expiresIn, algorithm: algorithm}, (err, decoded) => {
         // If Jwt is invalid or incorrect:
         if (err){
             res.status(401).send("Invalid jwt");
         } else{
-            // jwt is valid!
+            // jwt is valid - send decoded json object.
             res.json(decoded);
         }
     });
