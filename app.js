@@ -1,11 +1,11 @@
+// Set to true when testing locally, because SSL is enforced
+var DEBUG_MODE = false;
 
 const createError = require('http-errors');
 const express = require('express');
-
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
 const indexRouter = require('./routes/index');
 // TODO: Rename to /routes/api/store
 const storeRouter = require('./routes/store');
@@ -16,21 +16,25 @@ const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
 const app = express();
 
-// Enforce HSTS (HTTP strict transport security)
-const hsts = require('hsts')
-app.use(hsts({
-  maxAge: 63072000, // 180 days in seconds
-  includeSubDomains: true,
-  preload: true
-}))
+if (!DEBUG_MODE) {
+    // Enforce HSTS (HTTP strict transport security)
+    const hsts = require('hsts')
+    app.use(hsts({
+        maxAge: 63072000, // 180 days in seconds
+        includeSubDomains: true,
+        preload: true
+    }))
 
-// Enforce SSL (HTTPS)
-const enforce = require('express-sslify');
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
+    // Enforce SSL (HTTPS)
+    const enforce = require('express-sslify');
+    app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
-// ensure that all headers are provided:
-const helmet = require('helmet')
-app.use(helmet());
+    // ensure that all headers are provided:
+    const helmet = require('helmet')
+    app.use(helmet());
+
+    console.log("Still executes")
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
