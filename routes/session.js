@@ -40,7 +40,7 @@ router.get("/", function(req, res, next) {
         var db = new MYSQL();
         db.getUserData(username, (result) => {
             if (!result || result.length == 0) {
-                res.status(401).send("Access denied")
+                res.status(401).send("Access denied");
                 return;
             }
 
@@ -54,9 +54,11 @@ router.get("/", function(req, res, next) {
             if (result[0].username === username && result[0].password === password) {
                 var privateKEY = fs.readFileSync(PRIVATE_KEY_FILE, 'utf8');
                 var token = jwt.sign({username: username}, privateKEY, {issuer: issuer, expiresIn: expiresIn, algorithm: algorithm});
-                console.log("Token - " + token)
                 res.send(token);
 
+                if (DEBUG_MODE){
+                    console.log("JWT generated: " + token);
+                }
             } else {
                 res.status(401).send("Access denied!");
             }
