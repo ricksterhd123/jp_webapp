@@ -1,7 +1,7 @@
 
 const createError = require('http-errors');
 const express = require('express');
-const enforce = require('express-sslify');
+
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -15,6 +15,14 @@ const sessionRouter = require('./routes/session');
 const usersRouter = require('./routes/users');
 const app = express();
 
+// Enforce HSTS (HTTP strict transport security)
+const hsts = require('hsts')
+app.use(hsts({
+  maxAge: 15552000  // 180 days in seconds
+}))
+
+// Enforce SSL (HTTPS)
+const enforce = require('express-sslify');
 app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 // view engine setup
