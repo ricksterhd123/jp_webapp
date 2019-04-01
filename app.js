@@ -1,5 +1,7 @@
+
 const createError = require('http-errors');
 const express = require('express');
+const enforce = require('express-sslify');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -13,7 +15,7 @@ const sessionRouter = require('./routes/session');
 const usersRouter = require('./routes/users');
 const app = express();
 
-
+app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
