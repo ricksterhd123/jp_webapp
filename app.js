@@ -6,14 +6,14 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('../routes/index');
+const indexRouter = require('./routes/index');
 // TODO: Rename to /routes/api/store
-const storeRouter = require('../routes/store');
+const storeRouter = require('./routes/store');
 // TODO: Rename to /routes/api/session
-const sessionRouter = require('../routes/session');
+const sessionRouter = require('./routes/session');
 // TODO: Rename to /routes/api/users
-const usersRouter = require('../routes/users');
-const registerRouter = require('../routes/register');
+const usersRouter = require('./routes/users');
+const registerRouter = require('./routes/register');
 const app = express();
 
 // Enforce HSTS (HTTP strict transport security)
