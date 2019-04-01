@@ -12,6 +12,7 @@ const PUBLIC_KEY_FILE = __dirname + "/../public-key.key";
 var DEBUG_MODE = true;
 
 // JWT claims:
+var issuer = "jumppack"
 var expiresIn = "12h";  // Time before JWT expirary
 var algorithm = "RS256"; // Algorithm used for private/public key pair
 
