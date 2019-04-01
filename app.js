@@ -18,7 +18,9 @@ const app = express();
 // Enforce HSTS (HTTP strict transport security)
 const hsts = require('hsts')
 app.use(hsts({
-  maxAge: 15552000  // 180 days in seconds
+  maxAge: 63072000, // 180 days in seconds
+  includeSubDomains: true,
+  preload: true
 }))
 
 // Enforce SSL (HTTPS)
