@@ -1,5 +1,5 @@
 // Set to true when testing locally, because SSL is enforced
-var DEBUG_MODE = false;
+var DEBUG_MODE = true;
 
 const createError = require('http-errors');
 const express = require('express');
@@ -27,7 +27,9 @@ if (!DEBUG_MODE) {
 
     // Enforce SSL (HTTPS)
     const enforce = require('express-sslify');
-    app.use(enforce.HTTPS({ trustProtoHeader: true }))
+    app.use(enforce.HTTPS({
+        trustProtoHeader: true
+    }))
 
     // ensure that all headers are provided:
     const helmet = require('helmet')
@@ -42,37 +44,34 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+    extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Index
 app.use('/', indexRouter);
-
 // Web api store
 app.use('/api/store', storeRouter);
-
-// app.use(basicAuth({
-//     users: { 'exile': 'test123' }
-// }))
 app.use('/api/session', sessionRouter);
 app.use('/api/users', usersRouter);
 app.use('/register', registerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
