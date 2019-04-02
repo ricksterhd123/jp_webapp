@@ -34,15 +34,15 @@ class MYSQL{
     listGames(id, search, callback) {
         if (!this.connection) return false;
 
-        let query = 'SELECT * FROM test';
+        let query = 'SELECT * FROM Games';
 
         if (id) {
-            query += ' WHERE userid = ' + this.connection.escape(id);
+            query += ' WHERE game_id = ' + this.connection.escape(id);
         }
 
         if (search) {
             query += (id) ? " AND" : " WHERE";    // TODO: find a better way to do this.
-            query += " title = " + this.connection.escape(search);
+            query += " game_name = " + this.connection.escape(search);
         }
 
         console.log(query);
@@ -56,7 +56,7 @@ class MYSQL{
 
     getUserData(username, callback){
         if (!this.connection) return false;
-        let query = "SELECT * FROM UserAccounts WHERE username = " + this.connection.escape(username);
+        let query = "SELECT * FROM User_Account WHERE user_name = " + this.connection.escape(username);
 
         this.connection.query(query, (err, results) => {
             if (err) throw err;
