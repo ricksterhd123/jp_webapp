@@ -23,19 +23,19 @@ if (!DEBUG_MODE) {
         maxAge: 63072000, // 180 days in seconds
         includeSubDomains: true,
         preload: true
-    }))
+    }));
 
     // Enforce SSL (HTTPS)
     const enforce = require('express-sslify');
     app.use(enforce.HTTPS({
         trustProtoHeader: true
-    }))
+    }));
 
     // ensure that all headers are provided:
-    const helmet = require('helmet')
+    const helmet = require('helmet');
     app.use(helmet());
 
-    console.log("Still executes")
+    console.log("Still executes");
 }
 
 // view engine setup
