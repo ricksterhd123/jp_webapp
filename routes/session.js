@@ -19,7 +19,7 @@ var algorithm = "RS256"; // Algorithm used for private/public key pair
 /* Send signed JWT once user successfully authenticated */
 router.get("/", function(req, res, next) {
     // Grab the "Authorization" header.
-    var auth = req.get("authorization");
+    var auth = req.get("Authorization");
 	console.log(auth);
     // On the first request, the "Authorization" header won't exist, so we'll set a Response
     // header that prompts the browser to ask for a username and password.
