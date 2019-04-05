@@ -54,7 +54,7 @@ router.get("/", function(req, res, next) {
             if (result[0].user_name === username && result[0].user_password === password) {
                 var privateKEY = fs.readFileSync(PRIVATE_KEY_FILE, 'utf8');
                 var token = jwt.sign({username: username}, privateKEY, {issuer: issuer, expiresIn: expiresIn, algorithm: algorithm});
-                res.send(token);
+                res.status(203).send(token);
 
                 if (DEBUG_MODE){
                     console.log("JWT generated: " + token);
