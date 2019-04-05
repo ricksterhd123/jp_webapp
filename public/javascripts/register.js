@@ -3,14 +3,17 @@ function registration(){
     var username = $("#username").val();
     var password = $("#password").val();
     var repeatPassword = $("#repeat").val();
-    console.log(email);
-    
+
+    if ((password.length == 0 || repeatPassword.length == 0) || password !== repeatPassword) {
+        alert("Password does not match...");
+    } else {
         $.ajax({
             type: "PUT",
             url: "/api/users",
-            data: "username="+username+"&"+"password="+password,
+            data: "email="+email+"&"+"username="+username+"&"+"password="+password,
             success: function(data){
                 alert(data);
             }
         });
+    }
 }

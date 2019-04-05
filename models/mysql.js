@@ -3,9 +3,15 @@
 const mysql = require('mysql');
 // database config
 const config = require('./config.js')
+const MAX_INT = 2147483647;
+
 // const connection = mysql.createConnection(config.mysql);
 // // TODO: Store data in memory or some type of cache and provide an interface to the MySQL connection.
 // connection.connect();
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 class MYSQL{
     constructor(){
@@ -54,6 +60,7 @@ class MYSQL{
         return true;
     }
 
+    // Get all game names
     listGamesNames(callback) {
       if (!this.connection) return false;
 
@@ -67,9 +74,49 @@ class MYSQL{
       return true;
     }
 
+    // get user account details
     getUserData(username, callback){
         if (!this.connection) return false;
         let query = "SELECT * FROM User_Account WHERE user_name = " + this.connection.escape(username);
+
+        this.connection.query(query, (err, results) => {
+            if (err) throw err;
+            callback(results);
+        })
+        return true;
+    }
+
+    // get user account details
+    getUserDataFromID(user_id, callback){
+        if (!this.connection) return false;
+        let query = "SELECT * FROM User_Account WHERE user_id = " + this.connection.escape(user_id);
+
+        this.connection.query(query, (err, results) => {
+            if (err) throw err;
+            callback(results);
+        })
+        return true;
+    }
+
+    // add user account
+    addUserData(username, password, email, callback){
+        if (!this.connection) return false;
+        // // create a random ID value because i cannot for the life of me get AUTO_INCREMENT working on user_id ... foreign key constrains etc
+        // let user_id = getRandomInt(MAX_INT - 1);
+        // console.log(user_id);
+        // let duplicate = true;
+        //
+        // // No time = hack
+        // while (duplicate) {
+        //     getUserDataFromID(user_id, (results) => {
+        //         duplicate = results.length > 0;
+        //         user_id = getRandomInt(MAX_INT - 1); // -1 for good luck and good marks...
+        //     });
+        //     console.log(user_id);
+        // }
+
+        // Now add the user into the database.
+        let query = "INSERT INTO User_Account (`user_id`, `user_name`, `user_email`, `user_password`) VALUES ( NULL, " +  this.connection.escape(username) + ", " + this.connection.escape(email) + ", " + this.connection.escape(password) + ")";
 
         this.connection.query(query, (err, results) => {
             if (err) throw err;

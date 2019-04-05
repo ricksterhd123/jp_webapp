@@ -1,11 +1,12 @@
 extends layout
 
 block content
+    p#error #{errMsg}
 
     form
     .form-group
         label(for='exampleInputEmail1') Email address
-        input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
+        input#email.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
         small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
     .form-group
         label(for='inputUsername') Username
@@ -13,8 +14,9 @@ block content
     .form-group
         label(for='exampleInputPassword1') Password
         input#password.form-control(type='password', placeholder='Password')
+        small#emailHelp.form-text.text-muted Passwords must contain at least one capital letter, a special character and at least one number.
     .form-group
         label(for='exampleInputPassword2') Repeat Password
-        input#repeat.form-control(type='password', placeholder='Password')
+        input#repeat.form-control(type='password', placeholder='Repeat password')
     script(src="/javascripts/register.js")
     button.btn.btn-primary(onclick="registration()", type='submit') Register
