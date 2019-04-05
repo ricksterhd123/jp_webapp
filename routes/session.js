@@ -23,12 +23,7 @@ router.get("/", function(req, res, next) {
 	console.log(auth);
     // On the first request, the "Authorization" header won't exist, so we'll set a Response
     // header that prompts the browser to ask for a username and password.
-    if (!auth) {
-        res.set("WWW-Authenticate", "Basic realm=\"Authorization Required\"");
-        // If the user cancels the dialog, or enters the password wrong too many times,
-        // show the Access Restricted error message.
-        return res.status(401).send("Authorization Required");
-    } else {
+	if (auth) {
         // If the user enters a username and password, the browser re-requests the route
         // and includes a Base64 string of those credentials.
         // NOTE: overflow
@@ -66,6 +61,8 @@ router.get("/", function(req, res, next) {
 
         // close database connection
         db.end();
+	} else {
+		res.status(401).send();
     }
 });
 
