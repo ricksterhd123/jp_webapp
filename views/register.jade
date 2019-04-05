@@ -1,6 +1,7 @@
 extends layout
 
 block content
+
     form
     .form-group
         label(for='exampleInputEmail1') Email address
@@ -8,11 +9,12 @@ block content
         small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
     .form-group
         label(for='inputUsername') Username
-        input#inputUsername.form-control(type='text', placeholder='Username')
+        input#username.form-control(type='text', placeholder='Username')
     .form-group
         label(for='exampleInputPassword1') Password
-        input#exampleInputPassword1.form-control(type='password', placeholder='Password')
+        input#password.form-control(type='password', placeholder='Password')
     .form-group
         label(for='exampleInputPassword2') Repeat Password
-        input#exampleInputPassword2.form-control(type='password', placeholder='Password')
-    button.btn.btn-primary(type='submit') Register
+        input#repeat.form-control(type='password', placeholder='Password')
+    script(src="/javascripts/register.js")
+    button.btn.btn-primary(onclick="registration()", type='submit') Register

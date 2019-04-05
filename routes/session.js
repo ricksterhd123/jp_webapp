@@ -47,8 +47,8 @@ router.get("/", function(req, res, next) {
             if (DEBUG_MODE){
                 console.log("Username: " + username);
                 console.log("Password: " + password);
-                console.log("MySQL Username: " + result[0].username);
-                console.log("MySQL Password: " + result[0].password);
+                console.log("MySQL Username: " + result[0].user_name);
+                console.log("MySQL Password: " + result[0].user_password);
             }
 
             if (result[0].username === username && result[0].password === password) {
