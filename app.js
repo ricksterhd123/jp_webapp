@@ -6,14 +6,17 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
 const indexRouter = require('./routes/index');
 // TODO: Rename to /routes/api/store
-const storeRouter = require('./routes/store');
+const storeRouter = require('./routes/store/store');
 // TODO: Rename to /routes/api/session
 const sessionRouter = require('./routes/session');
 // TODO: Rename to /routes/api/users
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
+const storeGamesRouter = require('./routes/store/games');
+
 const app = express();
 
 if (!DEBUG_MODE) {
@@ -57,6 +60,7 @@ app.use('/api/store', storeRouter);
 app.use('/api/session', sessionRouter);
 app.use('/api/users', usersRouter);
 app.use('/register', registerRouter);
+app.use('/api/store/games', storeGamesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

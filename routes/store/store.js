@@ -4,7 +4,7 @@
 
 const express = require('express');
 const router = express.Router();
-const MYSQL = require('../models/mysql');
+const MYSQL = require('../../models/mysql');
 
 router.get('/', (req, res, next) => {
 	let db = new MYSQL();

@@ -54,6 +54,19 @@ class MYSQL{
         return true;
     }
 
+    listGamesNames(callback) {
+      if (!this.connection) return false;
+
+      let query = 'SELECT game_name FROM Games';
+
+      this.connection.query(query, function(err, results) {
+          if (err) throw err;
+          callback(results);
+      });
+
+      return true;
+    }
+
     getUserData(username, callback){
         if (!this.connection) return false;
         let query = "SELECT * FROM User_Account WHERE user_name = " + this.connection.escape(username);
