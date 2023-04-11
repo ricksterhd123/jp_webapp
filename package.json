@@ -22,7 +22,7 @@
     "mysql": "github:mysqljs/mysql",
     "nodemon": "~2.0.3",
     "pug": "^2.0.3",
-    "snyk": "^1.314.0"
+    "snyk": "^1.1140.0"
   },
   "devDependencies": {
     "mocha": "^6.0.2",
